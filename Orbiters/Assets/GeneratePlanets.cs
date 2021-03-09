@@ -38,7 +38,7 @@ public class GeneratePlanets : MonoBehaviour
             var sp = GameObject.Instantiate(sphereToCopy, planetList.transform);
             sp.name = "Planet " + i;
             sp.transform.position = this.transform.position + new Vector3(Random.Range(-maxRadius, maxRadius), Random.Range(-maxRadius, maxRadius), 0);
-            float size = Random.Range(.1f, 2);
+            float size = Random.Range(.1f, 5);
             sp.transform.localScale *= size;
             sp.GetComponent<Rigidbody2D>().mass = size;
             spheres.Add(sp);

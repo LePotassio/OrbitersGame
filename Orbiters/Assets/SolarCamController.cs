@@ -20,32 +20,32 @@ public class SolarCamController : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.I))
         {
             Vector3 currentPos = this.gameObject.transform.position;
-            
-            this.gameObject.transform.position = new Vector3(currentPos.x, currentPos.y + (10000 * Time.fixedDeltaTime), currentPos.z);
+            if (currentPos.y < 90000)
+                this.gameObject.transform.position = new Vector3(currentPos.x, currentPos.y + (10000 * Time.fixedDeltaTime), currentPos.z);
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.K))
         {
             Vector3 currentPos = this.gameObject.transform.position;
-
-            this.gameObject.transform.position = new Vector3(currentPos.x, currentPos.y - (10000 * Time.fixedDeltaTime), currentPos.z);
+            if (currentPos.y > -90000)
+                this.gameObject.transform.position = new Vector3(currentPos.x, currentPos.y - (10000 * Time.fixedDeltaTime), currentPos.z);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.L))
         {
             Vector3 currentPos = this.gameObject.transform.position;
-
-            this.gameObject.transform.position = new Vector3(currentPos.x + (10000 * Time.fixedDeltaTime), currentPos.y, currentPos.z);
+            if (currentPos.x < 90000)
+                this.gameObject.transform.position = new Vector3(currentPos.x + (10000 * Time.fixedDeltaTime), currentPos.y, currentPos.z);
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.J))
         {
             Vector3 currentPos = this.gameObject.transform.position;
-
-            this.gameObject.transform.position = new Vector3(currentPos.x - (10000 * Time.fixedDeltaTime), currentPos.y, currentPos.z);
+            if (currentPos.x > -90000)
+                this.gameObject.transform.position = new Vector3(currentPos.x - (10000 * Time.fixedDeltaTime), currentPos.y, currentPos.z);
         }
     }
 }
