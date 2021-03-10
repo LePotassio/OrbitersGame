@@ -25,18 +25,26 @@ public class PlanetGen : MonoBehaviour
         for (int planetNum = 0; planetNum < planetCount; planetNum++)
         {
             var sp = GameObject.Instantiate(planetPrefab, transform);
-            sp.name += " " + planetNum;
+            sp.name = "World " + (planetNum + 1);
             sp.transform.position = this.transform.position + new Vector3(Random.Range(-maxRadius, maxRadius), Random.Range(-maxRadius, maxRadius), 0);
 
             CelestialBody cb = sp.GetComponent<CelestialBody>();
-            float rand = Random.Range(.2f, 2f);
+            // May need adjusting, baised towards bigger, could make small med large categories for easy implmentation
+            float rand = 1;
+            if (planetNum % 2 == 0)
+                rand = Random.Range(1f, 3f);
+            else
+                rand = Random.Range(.1f, .4f);
 
             cb.spriteHolder = cb.transform.GetChild(0);
             cb.spriteHolder.localScale = rand * Vector2.one * cb.radius;
             cb.radius *= rand;
-
+            Debug.Log(sp.name + ": " + cb.radius);
+            cb.surfaceGravity += rand * 2;
             //
-            Vector2 initVel = new Vector2(Random.Range(-cb.radius / 2, cb.radius / 2), Random.Range(-cb.radius / 2, cb.radius / 2));
+            Vector2 initVel = new Vector2(Random.Range(-cb.radius, cb.radius), Random.Range(-cb.radius, cb.radius));
+            //Debug.Log(initVel);
+            cb.velocity = initVel;
             cb.initialVelocity = initVel;
         }
 

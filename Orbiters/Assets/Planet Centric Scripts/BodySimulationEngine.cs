@@ -43,7 +43,8 @@ public class BodySimulationEngine : MonoBehaviour
                 float sqrDst = (body.Position - point).sqrMagnitude;
                 Vector2 forceDir = (body.Position - point).normalized;
                 
-                acceleration += forceDir * UniverseGlobals.gravitationalConst * body.mass / sqrDst;
+                if (sqrDst != 0)
+                    acceleration += forceDir * UniverseGlobals.gravitationalConst * body.mass / sqrDst;
             }
         }
 
@@ -54,6 +55,8 @@ public class BodySimulationEngine : MonoBehaviour
     {
         get
         {
+            if (Instance == null)
+                return null;
             return Instance.bodies;
         }
     }

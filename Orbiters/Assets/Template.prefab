@@ -138,6 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 458220535320255887}
   - component: {fileID: 8078377398862610548}
+  - component: {fileID: 221572373160589321}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -209,6 +210,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &221572373160589321
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3741897636700436473}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.095
 --- !u!1 &3842981209963847067
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +237,7 @@ GameObject:
   - component: {fileID: 1260008219490861085}
   - component: {fileID: 6738359658094420422}
   - component: {fileID: 3427963525041749230}
+  - component: {fileID: 7602974951574804704}
   m_Layer: 0
   m_Name: Template
   m_TagString: Planet
@@ -262,7 +280,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &3427963525041749230
 MonoBehaviour:
@@ -281,3 +299,19 @@ MonoBehaviour:
   initialVelocity: {x: 1, y: 1, z: 1}
   bodyName: Template
   spriteHolder: {fileID: 458220535320255887}
+--- !u!58 &7602974951574804704
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842981209963847067}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 19.5

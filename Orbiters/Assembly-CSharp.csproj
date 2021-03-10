@@ -76,6 +76,7 @@
     <Compile Include="Assets\Sun Centric Scripts\PlayerControls.cs" />
     <Compile Include="Assets\Sun Centric Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Sun Centric Scripts\SolarCamController.cs" />
+    <Compile Include="Assets\Sun.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Unity 2019.4.21.f1/2019.4.21f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

@@ -24,7 +24,7 @@ public class CelestialBody : MonoBehaviour
     public Transform spriteHolder;
 
     //Properties for current velocity and mass - Mutators were originally private
-    public Vector2 velocity { get; private set; }
+    public Vector2 velocity { get; set; }
     public float mass { get; private set; }
     //bool radiusIndepMass;
 
@@ -61,7 +61,6 @@ public class CelestialBody : MonoBehaviour
 
     public void UpdatePosition(float timeStep)
     {
-        Debug.Log(rb.position + rb.velocity * timeStep);
         rb.MovePosition(rb.position + velocity * timeStep);
     }
 
@@ -88,6 +87,15 @@ public class CelestialBody : MonoBehaviour
         get
         {
             return rb.position;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        List<CelestialBody> bodies = BodySimulationEngine.Bodies;
+        if (bodies != null)
+        {
+            bodies.Remove(this);
         }
     }
 }
