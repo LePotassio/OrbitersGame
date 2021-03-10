@@ -90,12 +90,17 @@ public class OrbitDebug : MonoBehaviour
         // Draw paths on generated trajectories
         for (int bodyIndex = 0; bodyIndex < virtualBodies.Length; bodyIndex++)
         {
+            var pathColour = bodies[bodyIndex].gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
+            //Debug.Log(pathColour);
+
             if (useThickLines)
             {
                 var lineRenderer = bodies[bodyIndex].gameObject.GetComponentInChildren<LineRenderer>();
                 lineRenderer.enabled = true;
                 lineRenderer.positionCount = drawPoints[bodyIndex].Length;
                 lineRenderer.SetPositions(drawPoints3[bodyIndex]);
+                lineRenderer.startColor = pathColour;
+                lineRenderer.endColor = pathColour;
                 lineRenderer.widthMultiplier = width;
             }
             else
