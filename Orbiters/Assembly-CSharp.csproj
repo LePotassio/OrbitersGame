@@ -62,15 +62,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraFollow.cs" />
-    <Compile Include="Assets\Celestial.cs" />
-    <Compile Include="Assets\GeneratePlanets.cs" />
-    <Compile Include="Assets\GravityControl.cs" />
-    <Compile Include="Assets\Orbit.cs" />
-    <Compile Include="Assets\PlanetaryGravity.cs" />
-    <Compile Include="Assets\PlayerControls.cs" />
-    <Compile Include="Assets\PlayerMovement.cs" />
-    <Compile Include="Assets\SolarCamController.cs" />
+    <Compile Include="Assets\Planet Centric Scripts\BodySimulationEngine.cs" />
+    <Compile Include="Assets\Planet Centric Scripts\CelestialBody.cs" />
+    <Compile Include="Assets\Planet Centric Scripts\OrbitDebug.cs" />
+    <Compile Include="Assets\Planet Centric Scripts\PlanetGen.cs" />
+    <Compile Include="Assets\Planet Centric Scripts\UniverseGlobals.cs" />
+    <Compile Include="Assets\Sun Centric Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Sun Centric Scripts\Celestial.cs" />
+    <Compile Include="Assets\Sun Centric Scripts\GeneratePlanets.cs" />
+    <Compile Include="Assets\Sun Centric Scripts\GravityControl.cs" />
+    <Compile Include="Assets\Sun Centric Scripts\Orbit.cs" />
+    <Compile Include="Assets\Sun Centric Scripts\PlanetaryGravity.cs" />
+    <Compile Include="Assets\Sun Centric Scripts\PlayerControls.cs" />
+    <Compile Include="Assets\Sun Centric Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Sun Centric Scripts\SolarCamController.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Unity 2019.4.21.f1/2019.4.21f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
