@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BodySimulationEngine : MonoBehaviour
 {
+    public bool trailsActive;
+
     List<CelestialBody> bodies;
     static BodySimulationEngine instance;
 
@@ -12,6 +14,14 @@ public class BodySimulationEngine : MonoBehaviour
         bodies = new List<CelestialBody>(FindObjectsOfType<CelestialBody>());
         Time.fixedDeltaTime = UniverseGlobals.physicsTimeStep;
         Debug.Log("Simulation engine has set fixedDeltaTime to: " + UniverseGlobals.physicsTimeStep);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            toggleTrails();
+        }
     }
 
     private void FixedUpdate()
@@ -70,6 +80,27 @@ public class BodySimulationEngine : MonoBehaviour
                 instance = FindObjectOfType<BodySimulationEngine>();
             }
             return instance;
+        }
+    }
+
+    public void toggleTrails()
+    {
+        trailsActive = !trailsActive;
+        foreach (CelestialBody cb in bodies)
+        {
+            TrailRenderer tr = HierarchyHelpers.GetFirstChildWithTag(cb.transform, "CelestialTrail").GetComponent<TrailRenderer>();
+            if (!tr)
+            {
+                continue;
+            }
+            else if (trailsActive)
+            {
+                tr.enabled = true;
+            }
+            else
+            {
+                tr.enabled = false;
+            }
         }
     }
 }

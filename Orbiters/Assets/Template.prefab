@@ -299,6 +299,9 @@ MonoBehaviour:
   initialVelocity: {x: 1, y: 1, z: 1}
   bodyName: Template
   spriteHolder: {fileID: 458220535320255887}
+  displayTrail: 0
+  trailTime: 0
+  tr: {fileID: 0}
 --- !u!58 &7602974951574804704
 CircleCollider2D:
   m_ObjectHideFlags: 0

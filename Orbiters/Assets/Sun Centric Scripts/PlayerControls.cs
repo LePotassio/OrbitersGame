@@ -8,20 +8,22 @@ public class PlayerControls : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log(Time.timeScale);
             if (Time.timeScale != 64) {
                 Time.timeScale *= 2;
             }
+            Debug.Log("Unity Timescale now: " + Time.timeScale);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (Time.timeScale != 1) {
                 Time.timeScale /= 2;
             }
+            Debug.Log("Unity Timescale now: " + Time.timeScale);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             Time.timeScale = 1;
+            Debug.Log("Unity Timescale now: " + Time.timeScale);
         }
     }
 }

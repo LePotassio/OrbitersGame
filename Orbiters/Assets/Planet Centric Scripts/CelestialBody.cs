@@ -26,6 +26,10 @@ public class CelestialBody : MonoBehaviour
     //Properties for current velocity and mass - Mutators were originally private
     public Vector2 velocity { get; set; }
     public float mass { get; private set; }
+
+    public bool displayTrail;
+    public float trailTime;
+    public TrailRenderer tr;
     //bool radiusIndepMass;
 
     Rigidbody2D rb;
@@ -35,6 +39,18 @@ public class CelestialBody : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.mass = mass;
         velocity = initialVelocity;
+
+        if (displayTrail && tr)
+        {
+            tr.startColor = spriteHolder.GetComponent<SpriteRenderer>().color;
+            tr.endColor = spriteHolder.GetComponent<SpriteRenderer>().color;
+            tr.time = trailTime;
+            tr.enabled = true; // need this as it seems awake permanently enables/disables
+        }
+        else if (tr)
+        {
+            tr.enabled = false;
+        }
     }
 
     // Not used anymore?
@@ -72,6 +88,15 @@ public class CelestialBody : MonoBehaviour
         spriteHolder = transform.transform.GetChild(0);
         spriteHolder.localScale = Vector2.one * radius;
         gameObject.name = bodyName;
+
+        if (displayTrail && tr)
+        {
+            tr.enabled = true;
+        }
+        else if (tr)
+        {
+            tr.enabled = false;
+        }
     }
 
     public Rigidbody2D Rigidbody2D
