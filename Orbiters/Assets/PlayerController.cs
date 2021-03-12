@@ -31,10 +31,13 @@ public class PlayerController : MonoBehaviour
 
         foreach (CelestialBody body in bodies)
         {
+            // Distance away from body
             float sqrDst = (body.Position - rb.position).sqrMagnitude;
+            // Unit vector with direction
             Vector2 forceDir = (body.Position - rb.position).normalized;
             Vector2 acceleration = forceDir * UniverseGlobals.gravitationalConst * body.mass / sqrDst;
-            //rb.AddForce(acceleration, ForceMode2D.Force);
+            rb.AddForce(acceleration * 1000, ForceMode2D.Force);
+            Debug.Log("Force added to player: " + acceleration);
 
             // Find body with strongest grav pull
             if (acceleration.sqrMagnitude > strongestGrav.sqrMagnitude)
@@ -48,6 +51,7 @@ public class PlayerController : MonoBehaviour
         Vector2 gravityUp = -strongestGrav.normalized;
         rb.rotation = Quaternion.FromToRotation(transform.up, gravityUp).z * rb.rotation;
 
+        // Playermovement
         rb.MovePosition(rb.position + smoothVelocity * Time.fixedDeltaTime);
     }
 }

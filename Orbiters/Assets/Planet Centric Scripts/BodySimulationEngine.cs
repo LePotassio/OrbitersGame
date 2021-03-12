@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BodySimulationEngine : MonoBehaviour
 {
-    public bool trailsActive;
+    //public bool trailsActive;
 
     List<CelestialBody> bodies;
     static BodySimulationEngine instance;
@@ -20,7 +20,7 @@ public class BodySimulationEngine : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            toggleTrails();
+            //toggleTrails();
         }
     }
 
@@ -83,6 +83,7 @@ public class BodySimulationEngine : MonoBehaviour
         }
     }
 
+    /*
     public void toggleTrails()
     {
         trailsActive = !trailsActive;
@@ -103,4 +104,5 @@ public class BodySimulationEngine : MonoBehaviour
             }
         }
     }
+    */
 }

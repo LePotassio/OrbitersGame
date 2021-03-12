@@ -45,11 +45,11 @@ public class CelestialBody : MonoBehaviour
             tr.startColor = spriteHolder.GetComponent<SpriteRenderer>().color;
             tr.endColor = spriteHolder.GetComponent<SpriteRenderer>().color;
             tr.time = trailTime;
-            tr.enabled = true; // need this as it seems awake permanently enables/disables
+            //tr.enabled = true; // need this as it seems awake permanently enables/disables
         }
         else if (tr)
         {
-            tr.enabled = false;
+            //tr.enabled = false;
         }
     }
 
@@ -92,6 +92,7 @@ public class CelestialBody : MonoBehaviour
         if (displayTrail && tr)
         {
             tr.enabled = true;
+            tr.Clear();
         }
         else if (tr)
         {

@@ -10,7 +10,7 @@ public class OrbitDebug : MonoBehaviour
 
     public float timeStep = 0.1f;
 
-    // Factor in the time dilation of the sim or not
+    // Factor in the time dilation of the sim or not, NOTE THAT NON DEFAULT TIME STEP WILL CAUSE INNACURACY IN TIGHT ORBITS -> Best used as a long range orbit prediction
     public bool usePhysicsTimeStep;
 
 
@@ -46,8 +46,8 @@ public class OrbitDebug : MonoBehaviour
         // Init virtual bodies so we don't move the bodies themselves
         for (int i = 0; i < virtualBodies.Length; i++)
         {
-            virtualBodies[i] = new VirtualBody(bodies[i]);
-            drawPoints[i] = new Vector2[numSteps];
+            virtualBodies[i] = new VirtualBody(bodies[i], timeStep);
+            drawPoints[i] = new Vector2[numSteps + 1];
 
             if (bodies[i] == centralBody && relativeToBody)
             {
@@ -57,30 +57,39 @@ public class OrbitDebug : MonoBehaviour
         }
 
         // Generate lines through sim of steps...
-        for (int step = 0; step < numSteps; step++)
+        for (int step = 1; step < numSteps + 1; step++)
         {
             Vector2 referenceBodyPosition = (relativeToBody) ? virtualBodies[referenceFrameIndex].position : Vector2.zero;
             // Update velocities
-            for (int i = 0; i < virtualBodies.Length; i++)
+            if (step >= 0) // Bug detected, need to generate first update without
             {
-                virtualBodies[i].velocity += CalculateAcceleration(i, virtualBodies) * timeStep;
-            }
-            // Update positions
-            for (int i = 0; i < virtualBodies.Length; i++)
-            {
-                Vector2 newPos = virtualBodies[i].position + virtualBodies[i].velocity * timeStep;
-                virtualBodies[i].position = newPos;
-                if (relativeToBody)
+                for (int i = 0; i < virtualBodies.Length; i++)
                 {
-                    var referenceFrameOffset = referenceBodyPosition - referenceBodyInitialPosition;
-                    newPos -= referenceFrameOffset;
+                    virtualBodies[i].velocity += CalculateAcceleration(i, virtualBodies) * timeStep;
                 }
-                if (relativeToBody && i == referenceFrameIndex)
+                // Update positions
+                for (int i = 0; i < virtualBodies.Length; i++)
                 {
-                    newPos = referenceBodyInitialPosition;
-                }
+                    // Debug.Log(i + ": " + virtualBodies[i].position);
+                    Vector2 newPos = virtualBodies[i].position + virtualBodies[i].velocity * timeStep;
+                    virtualBodies[i].position = newPos;
+                    if (relativeToBody)
+                    {
+                        var referenceFrameOffset = referenceBodyPosition - referenceBodyInitialPosition;
+                        newPos -= referenceFrameOffset;
+                    }
+                    if (relativeToBody && i == referenceFrameIndex)
+                    {
+                        newPos = referenceBodyInitialPosition;
+                    }
 
-                drawPoints[i][step] = newPos;
+                    drawPoints[i][step] = newPos;
+                }
+            }
+
+            for (int i = 0; i < virtualBodies.Length; i++)
+            {
+                drawPoints[i][0] = bodies[i].Position;
             }
         }
 
@@ -131,7 +140,8 @@ public class OrbitDebug : MonoBehaviour
             }
             Vector3 forceDir = (virtualBodies[j].position - virtualBodies[i].position).normalized;
             float sqrDst = (virtualBodies[j].position - virtualBodies[i].position).sqrMagnitude;
-            acceleration += forceDir * UniverseGlobals.gravitationalConst * virtualBodies[j].mass / sqrDst;
+            if (sqrDst != 0)
+                acceleration += forceDir * UniverseGlobals.gravitationalConst * virtualBodies[j].mass / sqrDst;
         }
 
         return acceleration;
@@ -163,7 +173,7 @@ public class OrbitDebug : MonoBehaviour
         public Vector2 velocity;
         public float mass;
 
-        public VirtualBody(CelestialBody body)
+        public VirtualBody(CelestialBody body, float timeStep)
         {
             position = body.transform.position;
             velocity = body.initialVelocity;
@@ -178,7 +188,7 @@ public class OrbitDebug : MonoBehaviour
         foreach (Vector2[] vecArr in drawPoints)
         {
             j = 0;
-            drawPoints3[i] = new Vector3[numSteps];
+            drawPoints3[i] = new Vector3[numSteps + 1];
             foreach (Vector2 vec in vecArr)
             {
                 drawPoints3[i][j] = new Vector3(drawPoints[i][j].x, drawPoints[i][j].y, 0);
