@@ -16,16 +16,9 @@ public class BodySimulationEngine : MonoBehaviour
         Debug.Log("Simulation engine has set fixedDeltaTime to: " + UniverseGlobals.physicsTimeStep);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //toggleTrails();
-        }
-    }
-
     private void FixedUpdate()
     {
+        
         for (int i = 0; i < bodies.Count; i++)
         {
             Vector2 acceleration = CalculateAcceleration(bodies[i].Position, bodies[i]);
