@@ -6,9 +6,9 @@ public class Sun : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Planet")
+        if (collision.transform.parent.tag == "Planet")
         {
-            Destroy(collision.gameObject);
+            Destroy(collision.transform.parent.gameObject);
         }
     }
 }

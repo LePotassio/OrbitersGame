@@ -40,12 +40,16 @@ public class CelestialBody : MonoBehaviour
         rb.mass = mass;
         velocity = initialVelocity;
 
-        if (displayTrail && tr)
+        if (tr)
         {
             tr.startColor = spriteHolder.GetComponent<SpriteRenderer>().color;
             tr.endColor = spriteHolder.GetComponent<SpriteRenderer>().color;
             tr.time = trailTime;
             //tr.enabled = true; // need this as it seems awake permanently enables/disables
+            if (displayTrail)
+            {
+                
+            }
         }
         else if (tr)
         {

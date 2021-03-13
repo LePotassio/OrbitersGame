@@ -68,7 +68,7 @@
     <Compile Include="Assets\Planet Centric Scripts\OrbitDebug.cs" />
     <Compile Include="Assets\Planet Centric Scripts\PlanetGen.cs" />
     <Compile Include="Assets\Planet Centric Scripts\UniverseGlobals.cs" />
-    <Compile Include="Assets\PlayerController.cs" />
+    <Compile Include="Assets\ShipController.cs" />
     <Compile Include="Assets\Sun Centric Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Sun Centric Scripts\Celestial.cs" />
     <Compile Include="Assets\Sun Centric Scripts\GeneratePlanets.cs" />

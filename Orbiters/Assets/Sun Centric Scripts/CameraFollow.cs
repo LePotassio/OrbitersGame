@@ -20,8 +20,24 @@ public class CameraFollow : MonoBehaviour
 
         transform.position = target.position + offset;
 
-        transform.rotation = target.rotation;
+        //transform.rotation = target.rotation;
 
         // transform.LookAt(target); Don't do this, we 2d now
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Z))
+        {
+            Vector3 currentPos = this.gameObject.transform.position;
+            if (currentPos.z < -20)
+                offset = new Vector3(0, 0, currentPos.z + (100));
+        }
+        else if (Input.GetKey(KeyCode.X))
+        {
+            Vector3 currentPos = this.gameObject.transform.position;
+            if (currentPos.z > -60000)
+                offset = new Vector3(0, 0, currentPos.z - (100));
+        }
     }
 }
